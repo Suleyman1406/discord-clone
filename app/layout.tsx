@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
+      <html lang="en" suppressHydrationWarning={true}>
         <body
           className={cn(openSansFont.className, "bg-white, dark:bg-[#313338]")}
         >
