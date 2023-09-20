@@ -15,12 +15,15 @@ const NavigationItem = ({ id, imageUrl, label }: NavigationItemProps) => {
   const router = useRouter();
 
   const onClick = useCallback(() => {
-    router.push(`/servers/${serverId}`);
-  }, [serverId, router]);
+    router.push(`/servers/${id}`);
+  }, [id, router]);
 
   return (
     <ActionTooltip label={label} side="right" align="center">
-      <button onClick={onClick} className="group relative flex items-center">
+      <button
+        onClick={onClick}
+        className="group relative flex items-center mb-4"
+      >
         <div
           className={cn(
             "absolute left-0 bg-primary rounded-r-full transition-all w-[4px]",
