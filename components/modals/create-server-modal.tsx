@@ -49,7 +49,7 @@ const CreateServerModal = () => {
   });
 
   const isLoading = form.formState.isSubmitting;
-  const isModalOpen = isOpen && type == "CreateServer";
+  const isModalOpen = isOpen && type == "createServer";
 
   const handleClose = () => {
     form.reset();
