@@ -17,7 +17,7 @@ import { useModal } from "@/hooks/use-modal-store";
 
 const LeaveServerModal = () => {
   const [isLoading, setLoading] = useState(false);
-  const router = useRouter();
+  // const router = useRouter();
   const {
     type,
     isOpen,
@@ -33,14 +33,15 @@ const LeaveServerModal = () => {
       await axios.patch(`/api/servers/${server?.id}/leave`);
 
       onClose();
+      // router.push("/");
       // router.refresh();
-      router.push("/");
+      window.location.reload();
     } catch (err) {
       console.error("LEAVE_SERVER_REQUEST", err);
     } finally {
       setLoading(false);
     }
-  }, [onClose, router, server]);
+  }, [onClose, server]);
 
   return (
     <Dialog open={isModalOpen} onOpenChange={onClose}>
