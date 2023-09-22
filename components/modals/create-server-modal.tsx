@@ -3,6 +3,7 @@
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 
 import {
@@ -12,7 +13,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogFooter,
-} from "../ui/dialog";
+} from "@/components/ui/dialog";
 import {
   Form,
   FormControl,
@@ -20,17 +21,22 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
-import FileUpload from "../file-upload";
-import { useRouter } from "next/navigation";
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { useModal } from "@/hooks/use-modal-store";
 
+import FileUpload from "../file-upload";
+
 const formSchema = z.object({
-  name: z.string().min(1, {
-    message: "Server name is required",
-  }),
+  name: z
+    .string()
+    .min(1, {
+      message: "Server name is required",
+    })
+    .max(24, {
+      message: "Server name is too long.",
+    }),
   imageUrl: z.string().min(1, {
     message: "Server image is required",
   }),

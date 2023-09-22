@@ -30,9 +30,14 @@ import { useModal } from "@/hooks/use-modal-store";
 import FileUpload from "../file-upload";
 
 const formSchema = z.object({
-  name: z.string().min(1, {
-    message: "Server name is required",
-  }),
+  name: z
+    .string()
+    .min(1, {
+      message: "Server name is required",
+    })
+    .max(24, {
+      message: "Server name is too long.",
+    }),
   imageUrl: z.string().min(1, {
     message: "Server image is required",
   }),

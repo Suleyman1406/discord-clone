@@ -29,9 +29,14 @@ import FileUpload from "../file-upload";
 import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
-  name: z.string().min(1, {
-    message: "Server name is required",
-  }),
+  name: z
+    .string()
+    .min(1, {
+      message: "Server name is required",
+    })
+    .max(24, {
+      message: "Server name is too long.",
+    }),
   imageUrl: z.string().min(1, {
     message: "Server image is required",
   }),

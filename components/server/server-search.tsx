@@ -81,6 +81,7 @@ const ServerSearch = ({ data }: ServerSearchProps) => {
                   <CommandItem
                     key={id}
                     onSelect={() => onItemClick({ id, type })}
+                    className="cursor-pointer"
                   >
                     {icon}
                     <span>{name}</span>
