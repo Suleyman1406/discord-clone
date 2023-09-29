@@ -1,4 +1,5 @@
 import ChatHeader from "@/components/chat/chat-header";
+import { ChatInput } from "@/components/chat/chat-input";
 import { getOrCreateConversation } from "@/lib/conversation";
 import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
@@ -47,13 +48,23 @@ const MemberIdPage = async ({ params }: MemberIdPageProps) => {
     memberOne.profileId === currentMember.id ? memberTwo : memberOne;
 
   return (
-    <div>
+    <div className="bg-white dark:bg-[#313338] flex flex-col h-full">
       <ChatHeader
         type="conversation"
         serverId={params.serverId}
         name={otherMember.profile.name}
         imageUrl={otherMember.profile.imageUrl}
       />
+      <div className="mt-auto">
+        <ChatInput
+          name={otherMember.profile.name}
+          type="conversation"
+          apiUrl="/api/socket/conversations"
+          query={{
+            serverId: params.serverId,
+          }}
+        />
+      </div>
     </div>
   );
 };

@@ -5,6 +5,7 @@ import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 
 import ChatHeader from "@/components/chat/chat-header";
+import { ChatInput } from "@/components/chat/chat-input";
 
 interface ChannelIdPageProps {
   params: {
@@ -42,6 +43,17 @@ const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
         serverId={params.serverId}
         type="channel"
       />
+      <div className="mt-auto">
+        <ChatInput
+          name={channel.name}
+          query={{
+            serverId: params.serverId,
+            channelId: channel.id,
+          }}
+          type="channel"
+          apiUrl="/api/socket/messages"
+        />
+      </div>
     </div>
   );
 };
