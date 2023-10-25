@@ -23,7 +23,10 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning={true}>
         <body
-          className={cn(openSansFont.className, "bg-white, dark:bg-[#313338]")}
+          className={cn(
+            openSansFont.className,
+            "bg-white, dark:bg-[#313338] !pointer-events-auto"
+          )}
         >
           <ThemeProvider
             attribute="class"
