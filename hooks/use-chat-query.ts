@@ -1,5 +1,5 @@
 import qs from "query-string";
-import { useInfiniteQuery } from "@tanstack/react-query";
+import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 
 import { useSocket } from "@/components/providers/socket-provider";
 
