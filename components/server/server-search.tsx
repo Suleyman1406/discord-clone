@@ -46,10 +46,10 @@ const ServerSearch = ({ data }: ServerSearchProps) => {
     ({ id, type }: { id: string; type: "member" | "channel" }) => {
       setOpen(false);
       if (type === "member") {
-        return router.push(`/servers/${params.serverId}/conversations/${id}`);
+        return router.push(`/servers/${params?.serverId}/conversations/${id}`);
       }
 
-      return router.push(`/servers/${params.serverId}/channels/${id}`);
+      return router.push(`/servers/${params?.serverId}/channels/${id}`);
     },
     [params, router]
   );
