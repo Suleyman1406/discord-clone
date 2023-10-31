@@ -7,6 +7,8 @@ import { db } from "@/lib/db";
 import ChatHeader from "@/components/chat/chat-header";
 import { ChatInput } from "@/components/chat/chat-input";
 import { ChatMessages } from "@/components/chat/chat-messages";
+import { ChannelType } from "@prisma/client";
+import MediaRoom from "@/components/media-room";
 
 interface ChannelIdPageProps {
   params: {
@@ -44,31 +46,41 @@ const ChannelIdPage = async ({ params }: ChannelIdPageProps) => {
         serverId={params.serverId}
         type="channel"
       />
-      <ChatMessages
-        member={member}
-        name={channel.name}
-        chatId={channel.id}
-        type="channel"
-        apiUrl="/api/messages"
-        socketUrl="/api/socket/messages"
-        socketQuery={{
-          channelId: channel.id,
-          serverId: channel.serverId,
-        }}
-        paramKey="channelId"
-        paramValue={channel.id}
-      />
-      <div className="mt-auto">
-        <ChatInput
-          name={channel.name}
-          query={{
-            serverId: params.serverId,
-            channelId: channel.id,
-          }}
-          type="channel"
-          apiUrl="/api/socket/messages"
-        />
-      </div>
+      {channel.type === ChannelType.TEXT && (
+        <>
+          <ChatMessages
+            member={member}
+            name={channel.name}
+            chatId={channel.id}
+            type="channel"
+            apiUrl="/api/messages"
+            socketUrl="/api/socket/messages"
+            socketQuery={{
+              channelId: channel.id,
+              serverId: channel.serverId,
+            }}
+            paramKey="channelId"
+            paramValue={channel.id}
+          />
+          <div className="mt-auto">
+            <ChatInput
+              name={channel.name}
+              query={{
+                serverId: params.serverId,
+                channelId: channel.id,
+              }}
+              type="channel"
+              apiUrl="/api/socket/messages"
+            />
+          </div>
+        </>
+      )}
+      {channel.type === ChannelType.AUDIO && (
+        <MediaRoom audio={true} video={false} chatId={channel.id} />
+      )}
+      {channel.type === ChannelType.VIDEO && (
+        <MediaRoom audio={false} video={true} chatId={channel.id} />
+      )}
     </div>
   );
 };
