@@ -50,7 +50,7 @@ const MemberIdPage = async ({ params, searchParams }: MemberIdPageProps) => {
   const { memberOne, memberTwo } = conversation;
 
   const otherMember =
-    memberOne.profileId === currentMember.id ? memberTwo : memberOne;
+    memberOne.profileId === currentMember.id ? memberOne : memberTwo;
 
   return (
     <div className="bg-white dark:bg-[#313338] flex flex-col h-full">
